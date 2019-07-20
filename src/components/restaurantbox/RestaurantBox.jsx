@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link}  from 'react-router-dom';
 import DisplayBox from '../displayBox/DisplayBox';
 import RandomButton from '../randombutton/RandomButton';
 import CategoryContainer from '../categorycontainer/CategoryContainer';
@@ -103,6 +104,7 @@ class RestaurantBox extends React.Component{
 
         return(
             <div className="RestaurantBox-container">
+                <Link to="vote">Go to vote</Link>
                 {
                     this.state.category ? (
                         <div className="button-options">
