@@ -51,14 +51,32 @@ class RestaurantVote extends React.Component{
                 },
             ],
             winnerRestaurant: '',
+            searchbox: '',
         }
+
+        this.onHandleChange = this.onHandleChange.bind(this);
     }
+
+    onHandleChange(event){
+        console.log('the value: ' , event.target.value)
+        this.setState({searchbox: event.target.value})
+    }
+
     render(){
+        const {restaurants} = this.state;
+        const filteredRestaurants = restaurants.filter(restaurant => 
+            restaurant.category.toLowerCase().includes(this.state.searchbox.toLowerCase())
+        )
         return(
             <div>
                <Link to="/">Go to random selection</Link>
                 here we vote!
-                <VoteCardContainer restaurants={this.state.restaurants}/>
+                <input
+                    value={this.state.searchbox}
+                    placeholder="Search by category"
+                    onChange={this.onHandleChange} 
+                />
+                <VoteCardContainer restaurants={filteredRestaurants}/>
             </div>
         )
     }
